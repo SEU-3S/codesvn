@@ -643,14 +643,14 @@ Class used to configure the viewer map component (including layers) and handle m
             {
                 var layer:Layer = layerObject.layer;
 				if(layerObject.type == "baidu"){
-					var layer:Layer = new BaiduLayer(layerObject.url);;
-					map.addLayer(layer);
+					var _layer1:Layer = new BaiduLayer(layerObject.url);;
+					map.addLayer(_layer1);
 				}else if(layerObject.type == "google"){
-					var layer:Layer = new GoogleLayer(layerObject.url);
-					map.addLayer(layer);
+					var _layer2:Layer = new GoogleLayer(layerObject.url);
+					map.addLayer(_layer2);
 				}else if(layerObject.type == "tianditu"){
-					var layer:Layer = new TianDiTuLayer(layerObject.url);
-					map.addLayer(layer);
+					var _layer3:Layer = new TianDiTuLayer(layerObject.url);
+					map.addLayer(_layer3);
 				}else if (layer)
                 {
                     layer.addEventListener(LayerEvent.LOAD_ERROR, layer_loadErrorEvent);
