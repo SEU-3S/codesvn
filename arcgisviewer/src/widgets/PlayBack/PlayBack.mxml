@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<viewer:BaseWidget xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   xmlns:viewer="com.esri.viewer.*"
+				   x="600" y="300" 
+				   widgetConfigLoaded="basewidget_widgetConfigLoaded()" >
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.remoting.RemoteObject;
+			
+			//config
+			private var destination:String;
+			private var endpoint:String;
+			private function basewidget_widgetConfigLoaded():void{
+				if(configXML){
+					//get config
+					getAllDevices();
+				}
+			}
+			
+			private function getAllDevices():void{
+				var ro:RemoteObject=new RemoteObject();
+				ro.destination=destination;
+				ro.endpoint=endpoint;
+				ro.addEventListener(ResultEvent.RESULT,remoteObject_result);
+				ro.addEventListener(FaultEvent.FAULT,remoteObject_fault);
+				ro.getAllDevices();
+			}
+			private function remoteObject_result(event:ResultEvent):void{
+				Alert.show(event.result.toString());
+			}
+			private function remoteObject_fault(event:FaultEvent):void{
+				Alert.show("错误"+event.statusCode.toString());
+			}
+			
+			private function getHistoryCoords(devicesid:Array):void{
+				var ro:RemoteObject=new RemoteObject();
+				ro.destination=destination;
+				ro.endpoint=endpoint;
+				ro.addEventListener(ResultEvent.RESULT,remoteObject_result1);
+				ro.addEventListener(FaultEvent.FAULT,remoteObject_fault1);
+				ro.getAllDevices(devicesid);
+			}
+			private function remoteObject_result1(event:ResultEvent):void{
+				Alert.show(event.result.toString());
+			}
+			private function remoteObject_fault1(event:FaultEvent):void{
+				Alert.show("错误"+event.statusCode.toString());
+			}
+		]]>
+	</fx:Script>
+	
+	<viewer:WidgetTemplate id="wTemplate">
+	</viewer:WidgetTemplate>
+	
+	<s:TextInput id="input">
+		
+	</s:TextInput>
+	<s:Button left="50" top="10" label="remoteObject">
+		
+	</s:Button>
+	
+</viewer:BaseWidget>
