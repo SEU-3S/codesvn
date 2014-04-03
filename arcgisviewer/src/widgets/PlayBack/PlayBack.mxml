@@ -7,6 +7,7 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
@@ -15,9 +16,13 @@
 			//config
 			private var destination:String;
 			private var endpoint:String;
+			
+			private var devicesInfo:ArrayCollection;
 			private function basewidget_widgetConfigLoaded():void{
 				if(configXML){
 					//get config
+					destination=configXML.destination;
+					endpoint=configXML.endpoint;
 					getAllDevices();
 				}
 			}
@@ -31,10 +36,10 @@
 				ro.getAllDevices();
 			}
 			private function remoteObject_result(event:ResultEvent):void{
-				Alert.show(event.result.toString());
+				devicesInfo=event.result as ArrayCollection;
 			}
 			private function remoteObject_fault(event:FaultEvent):void{
-				Alert.show("错误"+event.statusCode.toString());
+				Alert.show("错误:"+event.fault.faultDetail);
 			}
 			
 			private function getHistoryCoords(devicesid:Array):void{
