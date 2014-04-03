@@ -3,8 +3,7 @@
 				   xmlns:s="library://ns.adobe.com/flex/spark"
 				   xmlns:mx="library://ns.adobe.com/flex/mx"
 				   xmlns:viewer="com.esri.viewer.*"
-				   x="600" y="300" 
-				   widgetConfigLoaded="basewidget_widgetConfigLoaded()" >
+				   x="600" y="300" widgetConfigLoaded="basewidget_widgetConfigLoaded()">
 	
 	<fx:Script>
 		<![CDATA[
