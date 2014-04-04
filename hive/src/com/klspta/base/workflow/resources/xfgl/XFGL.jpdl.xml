@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process description="信访管理" name="XFGL" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="270,21,48,48" name="start1">
+      <transition to="受理" name="受理" g="-5,-17"/>
+   </start>
+   <task g="349,17,92,52" name="受理" assignee="#{owner}">
+      <transition to="调查" name="调查" g="-5,-17"/>
+   </task>
+   <task candidate-groups="11b40261ddbe858ba9d9d163ec43ae3a" g="345,108,92,52" name="调查">
+      <transition g="-71,-17" name="处理意见" to="处理意见"/>
+      <transition g="-53,-17" name="归档" to="归档"/>
+   </task>
+   <task candidate-groups="11b40261ddbe858ba9d9d163ec43ae3a" g="346,214,92,52" name="处理意见">
+      <transition to="回执归档" name="回执归档" g="-5,-17"/>
+   </task>
+   <task candidate-groups="091bac38fa3a09f575ca5e2c67ad14ef" g="344,314,92,52" name="回执归档">
+      <transition to="end1"/>
+   </task>
+   <end g="488,319,48,48" name="end1"/>
+   <task candidate-groups="091bac38fa3a09f575ca5e2c67ad14ef" g="496,107,92,52" name="归档">
+      <transition to="end2"/>
+   </task>
+   <end g="520,202,48,48" name="end2"/>
+</process>

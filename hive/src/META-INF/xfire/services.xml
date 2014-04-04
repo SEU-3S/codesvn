@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+  <service xmlns="http://xfire.codehaus.org/config/1.0">
+    <name>change</name>
+    <namespace>CoordsSysUtil</namespace>
+    <serviceClass>com.klspta.model.wsdl.ICoordinateWSDL</serviceClass>
+    <implementationClass>com.klspta.model.wsdl.CoordinateWSDLImp</implementationClass>
+  </service>
+</beans>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="ZFJC_PTANCC" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="23,22,48,48" name="start1">
+      <transition to="受理"/>
+   </start>
+   <end g="69,254,48,48" name="结案"/>
+   <task assignee="#{owner}" g="83,21,92,52" name="受理">
+      <transition g="-13,-35" name="立案" to="立案"/>
+   </task>
+   <task candidate-groups="f054bb5cf7ab723cccdcac7c563812ca" g="192,17,92,52" name="立案">
+      <transition g="-9,-37" name="调查" to="调查"/>
+   </task>
+   <task candidate-groups="f054bb5cf7ab723cccdcac7c563812ca" g="295,18,92,52" name="调查">
+      <transition g="-31,-37" name="决定处理意见" to="决定处理意见"/>
+   </task>
+   <task candidate-groups="f054bb5cf7ab723cccdcac7c563812ca" g="395,14,92,52" name="决定处理意见">
+      <transition g="-19,-29" name="撤案" to="撤案"/>
+      <transition g="-22,-7" name="移送" to="移送"/>
+      <transition g="674,100;672,277:-77,-16" name="不予行政处罚" to="不予行政处罚"/>
+      <transition g="-16,-10" name="告知" to="告知"/>
+   </task>
+   <task candidate-groups="f054bb5cf7ab723cccdcac7c563812ca" g="553,251,92,52" name="不予行政处罚">
+      <transition to="结案"/>
+   </task>
+   <task candidate-groups="f054bb5cf7ab723cccdcac7c563812ca" g="430,101,92,52" name="移送">
+      <transition g="-6,-17" name="移送" to="告知"/>
+   </task>
+   <task candidate-groups="f054bb5cf7ab723cccdcac7c563812ca" g="316,101,92,52" name="告知">
+      <transition g="-5,-14" name="陈辩" to="陈辩"/>
+      <transition g="4,2" name="处罚决定" to="处罚决定"/>
+      <transition g="-10,-21" name="听证" to="听证"/>
+   </task>
+   <task candidate-groups="f054bb5cf7ab723cccdcac7c563812ca" g="177,103,92,52" name="陈辩">
+      <transition g="-53,-8" name="处罚决定" to="处罚决定"/>
+      <transition to="决定处理意见"/>
+   </task>
+   <task candidate-groups="f054bb5cf7ab723cccdcac7c563812ca" g="514,189,92,52" name="听证">
+      <transition g="-15,2" name="处罚决定" to="处罚决定"/>
+      <transition g="560,113:-2,20" to="决定处理意见" name="决定处理意见"/>
+   </task>
+   <task candidate-groups="f054bb5cf7ab723cccdcac7c563812ca" g="173,190,92,52" name="处罚决定">
+      <transition g="-7,-18" name="执行" to="执行"/>
+   </task>
+   <task candidate-groups="f054bb5cf7ab723cccdcac7c563812ca" g="43,188,92,52" name="执行">
+      <transition to="结案"/>
+   </task>
+   <end g="593,16,48,52" name="撤案"/>
+</process>

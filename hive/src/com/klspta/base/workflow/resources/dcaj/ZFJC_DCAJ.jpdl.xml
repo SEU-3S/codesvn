@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process description="执法监察-当场案件" name="ZFJC_DCAJ" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="38,17,48,48" name="start1">
+      <transition to="受理" name="受理" g="-5,-17"/>
+   </start>
+   <end g="37,110,48,48" name="结案"/>
+   <task assignee="#{owner}" g="146,14,92,52" name="受理">
+      <transition to="处罚决定" name="处罚决定" g="-5,-17"/>
+   </task>
+   <task candidate-groups="f054bb5cf7ab723cccdcac7c563812ca" g="321,15,92,52" name="处罚决定">
+      <transition to="执行" name="执行" g="-5,-17"/>
+   </task>
+   <task candidate-groups="f054bb5cf7ab723cccdcac7c563812ca" g="322,105,92,52" name="执行">
+      <transition to="结案" name="结案" g="-5,-17"/>
+   </task>
+   <task candidate-groups="f054bb5cf7ab723cccdcac7c563812ca" g="146,106,92,52" name="结案">
+      <transition to="结案" name="结束" g="-5,-17"/>
+   </task>
+</process>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<quartz>
+
+<job>
+    <job-detail>
+      <name>UpdateHistoryGpsInfo</name>
+      <job-class>com.klspta.job.updategps.UpdateHistoryGPSInfo</job-class>
+    </job-detail>
+    <trigger>
+      <cron>
+        <name>task3</name>
+        <job-name>UpdateHistoryGpsInfo</job-name>
+        <cron-expression>0 5 10 * * ?</cron-expression>
+     </cron>
+    </trigger>
+</job>
+
+ <!-- GPS巡查统计数据踪导入--> 
+- <job>
+- <job-detail>
+  <name>xcJob</name> 
+  <job-class>com.klspta.job.xcstatistic.XcStatisticJob</job-class> 
+  </job-detail>
+- <trigger>
+- <cron>
+  <name>insertGPSStatistic</name> 
+  <job-name>xcJob</job-name> 
+  <cron-expression>0 20 20 ? * *</cron-expression> 
+  </cron>
+  </trigger>
+  </job>
+
+</quartz>

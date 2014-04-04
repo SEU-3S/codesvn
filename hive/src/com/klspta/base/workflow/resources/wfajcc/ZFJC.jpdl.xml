@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process description="违法案件查处" name="ZFJC" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="32,29,48,48" name="start1">
+      <transition g="-5,-17" name="承办" to="承办"/>
+   </start>
+   <task assignee="#{owner}" g="106,26,92,52" name="承办">
+      <transition g="-5,-17" name="审查" to="审查"/>
+   </task>
+   <task candidate-groups="d6b42d4682af6c82b9dfb4e60dc11463" g="232,26,92,52" name="审查">
+      <transition g="-5,-17" name="审核" to="审核"/>
+   </task>
+   <task candidate-groups="4b31c5d8ea49fe8a90dd192a0ef7b976" g="353,27,92,52" name="审核">
+      <transition g="-5,-17" name="审批" to="审批"/>
+   </task>
+   <task candidate-groups="c2a650ffabe839368d8a0847f046a2c8" g="479,27,92,52" name="审批">
+      <transition g="-5,-17" name="立案" to="立案"/>
+   </task>
+   <task candidate-groups="4cea8f3c170db294722cc36280585b07" g="604,29,92,52" name="立案">
+      <transition g="-5,-17" name="调查" to="调查"/>
+   </task>
+   <task candidate-groups="b03c5b70a313b4069db6f029f045f7b2" g="604,110,92,52" name="调查">
+      <transition g="-5,-17" name="法律文书呈批" to="法律文书呈批"/>
+   </task>
+   <task assignee="b03c5b70a313b4069db6f029f045f7b2" g="439,110,116,52" name="法律文书呈批">
+      <transition g="-5,-17" name="法律文书审查" to="法律文书审查"/>
+   </task>
+   <task candidate-groups="e19a6f01b6581da2c5d4073ae5cb1a51" g="278,110,117,52" name="法律文书审查">
+      <transition g="-5,-17" name="法律文书审核" to="法律文书审核"/>
+   </task>
+   <task candidate-groups="44bd36e0ee443f7f6135326563520bc5" g="113,107,126,52" name="法律文书审核">
+      <transition g="-5,-17" name="分管领导批示" to="分管领导批示"/>
+   </task>
+   <task candidate-groups="a3ff673cbcb8b0a814ebcf9b7aa37626" g="114,191,126,52" name="分管领导批示">
+      <transition g="-5,-17" name="告知" to="告知"/>
+   </task>
+   <task candidate-groups="e19a6f01b6581da2c5d4073ae5cb1a51" g="271,193,92,52" name="告知">
+      <transition g="-5,-17" name="听证" to="听证"/>
+   </task>
+   <task candidate-groups="e19a6f01b6581da2c5d4073ae5cb1a51" g="386,192,92,52" name="听证">
+      <transition g="-5,-17" name="下达处罚决定" to="下达处罚决定"/>
+   </task>
+   <task candidate-groups="e19a6f01b6581da2c5d4073ae5cb1a51" g="499,192,92,52" name="下达处罚决定">
+      <transition g="-5,-17" name="移送" to="移送"/>
+   </task>
+   <task candidate-groups="e19a6f01b6581da2c5d4073ae5cb1a51" g="603,191,92,52" name="移送">
+      <transition g="-5,-17" name="结案" to="结案"/>
+   </task>
+   <task candidate-groups="091bac38fa3a09f575ca5e2c67ad14ef" g="115,273,92,52" name="归档">
+      <transition to="end1"/>
+   </task>
+   <task candidate-groups="f8da8200e8e94916cb2573bf8b706b50" g="237,273,92,52" name="结案审批">
+      <transition g="-5,-17" name="归档" to="归档"/>
+   </task>
+   <task candidate-groups="93827b16b8f8a4d64d4695c2c057b3bf" g="363,274,92,52" name="结案审核">
+      <transition g="-5,-17" name="结案审批" to="结案审批"/>
+   </task>
+   <task candidate-groups="e19a6f01b6581da2c5d4073ae5cb1a51" g="481,274,92,52" name="结案审查">
+      <transition g="-5,-17" name="结案审核" to="结案审核"/>
+   </task>
+   <task assignee="#{owner}" g="606,274,92,52" name="结案">
+      <transition g="-5,-17" name="结案审查" to="结案审查"/>
+   </task>
+   <end g="135,356,48,48" name="end1"/>
+</process>
