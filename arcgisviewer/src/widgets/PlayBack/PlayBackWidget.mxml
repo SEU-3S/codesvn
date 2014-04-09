@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<viewer:BaseWidget xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   xmlns:viewer="com.esri.viewer.*"
+				   widgetConfigLoaded="basewidget_widgetConfigLoaded()" xmlns:esri="http://www.esri.com/2008/ags">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.remoting.RemoteObject;
+			
+			//config
+			private var destination:String;
+			private var endpoint:String;
+			
+			private var devicesInfo:ArrayCollection;
+			private var historyRO:RemoteObject;
+			private var playBack:PlayBack;
+			private function basewidget_widgetConfigLoaded():void{
+				if(configXML){
+					//get config
+					destination=configXML.destination;
+					endpoint=configXML.endpoint;
+					getAllDevices();
+					playBack=new PlayBack();
+				}
+			}
+			
+			private function getAllDevices():void{
+				var ro:RemoteObject=new RemoteObject();
+				ro.destination=destination;
+				ro.endpoint=endpoint;
+				ro.addEventListener(ResultEvent.RESULT,remoteObject_result);
+				ro.addEventListener(FaultEvent.FAULT,remoteObject_fault);
+				ro.getAllDevices();
+			}
+			private function remoteObject_result(event:ResultEvent):void{
+				devicesInfo=event.result as ArrayCollection;
+				tree.dataProvider=devicesInfo;
+				tree.labelField="NAME";
+			}
+			private function remoteObject_fault(event:FaultEvent):void{
+				Alert.show("错误:"+event.fault.faultDetail);
+			}
+			
+			private function getHistoryCoords(devicesid:String):void{
+				historyRO=new RemoteObject();
+				historyRO.destination=destination;
+				historyRO.endpoint=endpoint;
+				historyRO.getHistoryCoords(devicesid);
+			}
+			
+			private function playback():void{
+				if(!tree.selectedItem){
+					Alert.show("请先选择设备");
+					return;
+				}
+				getHistoryCoords(tree.selectedItem.ID);
+				historyRO.addEventListener(ResultEvent.RESULT,function result(event:ResultEvent):void{
+					trace(event.result);
+					var array:ArrayCollection=new ArrayCollection();
+				});
+				historyRO.addEventListener(FaultEvent.FAULT,function fault(event:FaultEvent):void{
+					trace(event.fault.faultDetail);
+				});
+			}
+		]]>
+	</fx:Script>
+	
+	<esri:TimeSlider width="400" id="timeslider">
+		
+	</esri:TimeSlider>
+	<viewer:WidgetTemplate id="wTemplate" width="400" height="500">
+		<mx:Tree id="tree" width="350" height="300">
+		</mx:Tree>
+		<s:Label x="7" y="360" text="起止时间："/>
+		<s:Label x="7" y="323" text="结束时间："/>
+		<mx:DateField x="85" y="322" width="200"/>
+		<mx:DateField x="85" y="357" width="200"/>
+		<s:Button x="20" y="415" label="显示轨迹"/>
+		<s:Button x="211" y="415" label="清除轨迹"/>
+		<s:Button x="117" y="414" label="轨迹回放" click="playback()"/>
+	</viewer:WidgetTemplate>
+</viewer:BaseWidget>
