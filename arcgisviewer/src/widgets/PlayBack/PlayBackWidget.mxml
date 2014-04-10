@@ -3,7 +3,8 @@
 				   xmlns:s="library://ns.adobe.com/flex/spark"
 				   xmlns:mx="library://ns.adobe.com/flex/mx"
 				   xmlns:viewer="com.esri.viewer.*"
-				   widgetConfigLoaded="basewidget_widgetConfigLoaded()" xmlns:esri="http://www.esri.com/2008/ags">
+				   xmlns:esri="http://www.esri.com/2008/ags"
+				   widgetConfigLoaded="basewidget_widgetConfigLoaded()">
 	
 	<fx:Script>
 		<![CDATA[
@@ -19,14 +20,14 @@
 			
 			private var devicesInfo:ArrayCollection;
 			private var historyRO:RemoteObject;
-			private var playBack:PlayBack;
+			private var pbObject:PlayBack;
 			private function basewidget_widgetConfigLoaded():void{
 				if(configXML){
 					//get config
 					destination=configXML.destination;
 					endpoint=configXML.endpoint;
 					getAllDevices();
-					playBack=new PlayBack();
+					pbObject=new PlayBack(timeslider,map);
 				}
 			}
 			
@@ -44,7 +45,7 @@
 				tree.labelField="NAME";
 			}
 			private function remoteObject_fault(event:FaultEvent):void{
-				Alert.show("错误:"+event.fault.faultDetail);
+				Alert.show(event.fault.faultDetail,"错误");
 			}
 			
 			private function getHistoryCoords(devicesid:String):void{
@@ -56,33 +57,52 @@
 			
 			private function playback():void{
 				if(!tree.selectedItem){
-					Alert.show("请先选择设备");
+					Alert.show("请选择设备","提示");
 					return;
 				}
 				getHistoryCoords(tree.selectedItem.ID);
 				historyRO.addEventListener(ResultEvent.RESULT,function result(event:ResultEvent):void{
-					trace(event.result);
-					var array:ArrayCollection=new ArrayCollection();
+					var result:ArrayCollection=event.result as ArrayCollection;
+					if(result.length==0){
+						Alert.show("所选设备指定日期内没有有效数据!","提示");
+						return;
+					}
+					pbObject.playBack(result);
+					
 				});
 				historyRO.addEventListener(FaultEvent.FAULT,function fault(event:FaultEvent):void{
-					trace(event.fault.faultDetail);
+					Alert.show(event.fault.faultDetail,"错误");
 				});
+			}
+			
+			private function clearFeatures():void{
+				pbObject.flayer.clear();
+			}
+			
+			private function widget_closed():void{
+				//remove featurelayer
+				pbObject.flayer.visible=false;
+			}
+			private function widget_opend():void{
+				if(pbObject){
+					pbObject.flayer.visible=true;
+				}
 			}
 		]]>
 	</fx:Script>
 	
-	<esri:TimeSlider width="400" id="timeslider">
-		
+	<esri:TimeSlider id="timeslider" width="400">
 	</esri:TimeSlider>
-	<viewer:WidgetTemplate id="wTemplate" width="400" height="500">
+	<viewer:WidgetTemplate id="wTemplate" width="400" height="500" closed="widget_closed()"
+						   open="widget_opend()">
 		<mx:Tree id="tree" width="350" height="300">
 		</mx:Tree>
 		<s:Label x="7" y="360" text="起止时间："/>
 		<s:Label x="7" y="323" text="结束时间："/>
-		<mx:DateField x="85" y="322" width="200"/>
-		<mx:DateField x="85" y="357" width="200"/>
+		<mx:DateField x="85" y="322" width="200" formatString="YYYY-MM-DD"/>
+		<mx:DateField x="85" y="357" width="200" formatString="YYYY-MM-DD"/>
 		<s:Button x="20" y="415" label="显示轨迹"/>
-		<s:Button x="211" y="415" label="清除轨迹"/>
+		<s:Button x="211" y="415" label="清除轨迹" click="clearFeatures()"/>
 		<s:Button x="117" y="414" label="轨迹回放" click="playback()"/>
 	</viewer:WidgetTemplate>
 </viewer:BaseWidget>
