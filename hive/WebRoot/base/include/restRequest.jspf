@@ -1,0 +1,258 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+
+<script type="text/javascript">
+		   var restUrl = "";
+		
+		   if(restUrl == null || restUrl == ""){
+			 var query = window.location.href;
+			 var ss = query.split("/");
+			 restUrl = "http://" + ss[2] + "/" + ss[3]+ "/service/rest/";
+		   }
+    
+            var _$URL = restUrl;
+		    var _$parameters = "_$serid=";
+			var _$beanName = "nobeanname";
+			var _$methodName = "nomethodname";
+		
+		
+			function putRestParameter(parameterName, parameterValue){
+			    _$parameters = _$parameters + "&" + parameterName + "=" + parameterValue;
+			}
+			
+			function putClientCommond(beanName, methodName){
+			    this._$beanName = beanName;
+				this._$methodName = methodName;
+			}
+			
+			function restRequest(){
+
+			    _$URL = _$URL + _$beanName + "/" + _$methodName;
+				var _$xmlHttp;
+		        if(window.XMLHttpRequest){
+		            _$xmlHttp = new XMLHttpRequest();
+		        }else if(window.ActiveXObject){
+		            _$xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+		        }
+		        _$xmlHttp.open('POST', _$URL, false);
+		        _$xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		        _$xmlHttp.send(_$parameters);
+				var _$result = _$xmlHttp.responseText;            
+				_resetParameters();
+
+				//_$result = JSON.parse(_$result);
+				try{
+				    _$result = Ext.util.JSON.decode(_$result);
+				    var msg = viewCompare(result);
+					if (msg == 'NO') {
+						return result;
+					}else{
+						return "isException";
+					}
+				    return _$result;
+				}catch (e){
+				    return _$result;
+				}
+				
+			}
+			
+			function restRequestAsyn(funcback){
+			    restRequestAsyn.Postback = function(oxmlhttp){
+		            return function(){
+		                if(_$xmlHttp.readyState==4){
+		                    if (_$xmlHttp.status == 200) {
+								var _$result = _$xmlHttp.responseText;
+								_$result = Ext.util.JSON.decode(_$result);
+								_resetParameters();
+								funcback(_$result);
+							}
+		                }
+		            }
+		        }
+				
+			    _$URL = _$URL + _$beanName + "/" + _$methodName;
+			    var _$xmlHttp;
+		        if(window.XMLHttpRequest){
+		            _$xmlHttp = new XMLHttpRequest();
+		        }else if(window.ActiveXObject){
+		            _$xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+		        }
+		        _$xmlHttp.open('POST', _$URL, true);
+		        _$xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			    _$xmlHttp.onreadystatechange = restRequestAsyn.Postback(this._$xmlHttp);  
+			    _$xmlHttp.send(_$parameters);
+			}
+			
+			function _resetParameters(){
+			    _$URL = restUrl;
+		        _$parameters = "_$serid=";
+			    _$beanName = "nobeanname";
+			    _$methodName = "nomethodname";
+			}
+			
+			//从ajax.js迁移过来的内容
+			var plainCode = "sorry!数据库连接失败，请重新操作！";
+			var secretCode = "/com/klspta/base/util/impl/ExceptionCodeUtil";
+			var _window;
+			var _windowDel;
+			
+			function viewCompare(json) {
+				if (json != null && typeof(json) != "undefined" && json != 0) {
+		try{
+		var json = eval(json);
+		if (json.length > 0) {
+			var res = json[0].Exception;
+			if ("error" == res) {
+				plainCode = json[0].plain;
+				secretCode = json[0].secret;
+				viewException();
+				return "YS";
+			} else {
+				return "NO";
+			}
+		} else {
+			return "NO";
+		}
+		}catch(e){
+		return "NO";
+		}
+	}
+				return "NO";
+	}
+			viewException = function() {
+				_window = new Ext.Window({
+			
+							id : "_window",
+							title : "消息",
+							renderTo : Ext.getBody(),
+							frame : true,
+							plain : true,
+							resizable : false,
+							buttonAlign : "right",
+							closeAction : "hide",
+							maximizable : false,
+							draggable : false,
+							closable : true,
+							bodyStyle : "padding:4px",
+							width : 300,
+							height : 200,
+							layout : "form",
+							lableWidth : 280,
+							items : [{
+										xtype : 'label',
+										id : "meg1",
+										text : plainCode
+									}],
+							buttons : [{
+										id : "deta",
+										text : "详细",
+										handler : function() {
+											viewDel();
+										}
+									}, {
+										id : "clos",
+										text : "关闭",
+										handler : function() {
+											_window.hide();
+										}
+									}]
+			
+						});
+				_window.show();
+			
+			}
+			viewDel = function() {
+				_windowDel = new Ext.Window({
+							id : "_windowDel",
+							title : "消息",
+							renderTo : Ext.getBody(),
+							frame : true,
+							plain : true,
+							draggable : false,
+							resizable : false,
+							buttonAlign : "right",
+							closeAction : "hide",
+							maximizable : false,
+							closable : true,
+							width : 750,
+							height : 550,
+							lableWidth : 1,
+							layout : "fit",
+							items : [{
+										xtype : 'textarea',
+										width : 640,
+										height : 540,
+										value : secretCode,
+										id : "meg2"
+									}],
+							buttons : [{
+										id : "cop",
+										text : "复制",
+										handler : function() {
+											try {
+												window.clipboardData.setData("Text",
+														secretCode);
+											} catch (e) {
+												alert("浏览器不支持此功能！");
+											}
+										}
+									}, {
+										id : "clos",
+										text : "关闭",
+										handler : function() {
+											_windowDel.hide();
+										}
+									}]
+			
+						});
+				_windowDel.show();
+				Ext.getCmp("meg2").multiline = true; // 多行
+				Ext.getCmp("meg2").wordWrap = true;
+			
+			}
+			
+			function ajaxRequest(path, beanname, method, parameters) {
+				if (window.XMLHttpRequest) {
+					objXMLReq = new XMLHttpRequest();
+				} else if (window.ActiveXObject) {
+					objXMLReq = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				var URL = path + "service/rest/" + beanname + "/" + method;
+				objXMLReq.open("post", URL, false);
+				if (parameters != null) {
+					parameter = "&isPartlyRefresh=true&" + parameters;
+			
+				} else {
+					parameter = "&isPartlyRefresh=true";
+				}
+				objXMLReq.setRequestHeader('Content-Type',
+						'application/x-www-form-urlencoded');
+				objXMLReq.send(parameter);
+				var result = objXMLReq.responseText;
+				var msg = viewCompare(result);
+				if (msg == 'NO') {
+					return result;
+				}else{
+				return "isException";
+				}
+			
+			}
+			
+			function wfsAjax(URL, layerName, bbox) {
+				var objXMLReq = new ActiveXObject("Microsoft.XMLHTTP");
+				var defaultParm = "?request=GetFeature&service=WFS&Version=1.0.0&";
+				objXMLReq.open("get", URL + defaultParm + "typename=" + layerName
+								+ "&bbox=" + bbox, false);
+				objXMLReq.send();
+				var result = objXMLReq.responseText;
+				return result;
+			}
+			
+			function pjsonAjax(URL) {
+				var objXMLReq = new ActiveXObject("Microsoft.XMLHTTP");
+				objXMLReq.open("get", URL, false);
+				objXMLReq.send();
+				var result = objXMLReq.responseText;
+				return result;
+			}
+    </script>
+

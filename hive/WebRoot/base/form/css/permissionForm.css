@@ -1,0 +1,105 @@
+@CHARSET "UTF-8";
+body{
+	margin:0;
+	padding:0;
+	background-color:#FFF;
+	text-align:center;
+}
+
+#container{
+	width:900px;
+	margin:10px auto;
+	text-align:left;
+	position:relative;
+}
+
+tr{
+	height:40px;
+}
+
+.noUpBorder{
+	BORDER-TOP-STYLE: none; 
+}
+	
+			.input{
+				
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;				
+			}
+			.input30{
+				width: 30px;
+			}			
+			.input50{
+				width: 50px;
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;				
+			}
+			
+			.input60{
+				width: 60px;
+			}
+			
+			.input100{
+				width: 100px;
+			}						
+			.input150{
+				width: 150px;
+			}
+			
+			
+			.input300{
+				width:300px;
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;				
+			}
+			
+			.input400{
+				width:400px;
+			}
+			
+			.input600{
+				width:600px;
+			}
+			
+			.divQM{
+				width:40%;
+				float:left;
+				margin-left:50;
+				
+			}
+			.divRQ{
+				width:40%; 
+				float:left;
+				margin-left:200;
+			}
+			
+			.div50{
+				margin-left: 50px;
+			}
+
+			.div80{
+				margin-left: 80px;
+			}
+
+			.div200{
+				margin-left: 40px;
+				float: left;
+			}
+			
+			.div80 .divLeftFloat{
+				float: left;
+			}
+			
+			.div80 .divLeft200{
+				margin-left:200px;
+				float:left;
+			}		

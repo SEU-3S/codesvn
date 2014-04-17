@@ -1,0 +1,105 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@page import="java.net.URLDecoder"%>
+<%
+String _path = request.getContextPath();
+String _basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + _path + "/";
+String _zfjcType = request.getParameter("zfjcType");
+String _activityName = URLDecoder.decode(request.getParameter("activityName"), "utf-8");
+String _formName = request.getParameter("formName");
+%>
+<script type="text/javascript">
+	
+	function addBorders(){
+		var els= document.getElementsByTagName("input"); 
+		for(var i=0;i<els.length;i++){
+			var ss=els[i];
+			ss.onfocus=function(){
+			}
+			if(els[i].type=="text"){
+				els[i].onclick = function(){
+					var id = this.id;
+					if(document.getElementById(id).style.borderWidth != "2px"){
+						document.getElementById(id).style.borderWidth = 2;
+						document.getElementById(id).style.borderColor = "red";
+						this.tag = 1;
+					
+					}else{
+						document.getElementById(id).style.borderWidth = 1;
+						document.getElementById(id).style.borderColor = "black";
+						this.tag = 0;
+					}
+				}
+			}
+		}
+		var elss= document.getElementsByTagName("textarea"); 
+		for(var i=0;i<elss.length;i++){
+		//alert(elss[i].id);
+			elss[i].onclick = function(){
+				var id = this.id;
+				if(document.getElementById(id).style.borderWidth != "2px"){
+					document.getElementById(id).style.borderWidth = 2;
+					document.getElementById(id).style.borderColor = "red";
+					this.tag = 1;
+				
+				}else{
+					document.getElementById(id).style.borderWidth = 1;
+					document.getElementById(id).style.borderColor = "black";
+					this.tag = 0;
+				}
+			}
+		}
+		var fixed = document.getElementById("fixed");
+		if(fixed != null){
+	    	fixed.innerHTML = '<img src="<%=_basePath%>base/form/images/save.png" onclick="save123();" style="cursor:hand" title="保存"/>';
+	    }
+	}
+	
+	function save123(){
+		var basePath = "<%=_basePath %>";
+		var formName = "<%=_formName %>";
+		var zfjcType = "<%=_zfjcType %>";
+		var activityName = "<%=_activityName %>"; 
+		var msgs = "";
+		var tableName = "";
+		var nodeName = "";
+		var els= document.getElementsByTagName("input"); 
+		for(var i=0;i<els.length;i++){
+			if(els[i].type=="text"){
+				if(els[i].tag=="1"){						
+					msgs +=els[i].id+",";							
+				}
+			}
+		}
+		var elss= document.getElementsByTagName("textarea"); 
+		for(var i=0;i<elss.length;i++){
+			if(elss[i].tag=="1"){
+				msgs +=elss[i].id+",";					
+			}
+		}	
+		//alert(msgs);
+		//document.getElementById("hidden").value = msgs;
+	    //var myform = document.forms[0];
+	    //alert(basePath);
+	    //alert(basePath+"defaultForm.do?method=setEditFields&tableName=FORM_AUTHORITY&formId&formId="+formId+"&editFiles=" + msgs);
+	    //var url = encodeURI(encodeURI(basePath+"service/rest/startWorkflow/setEditFields?tableName=FORM_AUTHORITY&formName="+formName+"&zfjcType="+zfjcType+"&editFiles=" + msgs +"&activityName="+activityName))
+	    //myform.action = url
+	    //myform.submit();
+	    putClientCommond("formrequest","setEditFields");
+		putRestParameter("tableName","FORM_AUTHORITY");
+		putRestParameter("formName",formName);
+		putRestParameter("zfjcType",zfjcType);
+		putRestParameter("editFiles",msgs);
+		putRestParameter("activityName",encodeURI(encodeURI(activityName)));
+		var result = restRequest(); 
+	    if(result=="success"){
+	    	alert("表单权限保存成功！");
+	    }else{
+	    	alert("表单权限保存失败,请稍后重试或联系管理员。");
+	    }
+	}
+	
+	function back(){
+		window.close();
+	}
+	
+</script>

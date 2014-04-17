@@ -1,0 +1,288 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="com.klspta.console.user.User"%>
+<%@page import="com.klspta.base.workflow.foundations.WorkflowOp"%>
+<%@page import="com.klspta.base.workflow.foundations.IWorkflowOp"%>
+<%@page import="com.klspta.base.form.FormHandler"%>
+<%
+	String _$path = request.getContextPath();
+	String _$basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + _$path + "/";
+	String  _$personalJSPath = request.getRequestURI();
+	_$personalJSPath = _$personalJSPath.replaceAll(".jsp","");
+	_$personalJSPath = _$personalJSPath.split("/")[_$personalJSPath.split("/").length - 1];
+	String _$keyfield = request.getParameter("keyfield");
+	if(_$keyfield == null || _$keyfield.equals("")){
+	    _$keyfield = "yw_guid";
+	}
+	String _$key = "0";
+	_$key = request.getParameter(_$keyfield);
+	if(_$key == null || _$key.equals("")){
+		_$key = FormHandler.EXIST_YW_GUID;
+	}
+	String _$jdbcname = request.getParameter("jdbcname");
+	String wfInsId = request.getParameter("wfInsId");
+	IWorkflowOp workflow = WorkflowOp.getInstance();
+	String activityName = "";
+	if(wfInsId != null && wfInsId != ""){
+		activityName = workflow.getActivityNameByWfInsID(wfInsId);
+	}
+    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    String userId = null;
+    String fullName = "";
+    if (principal instanceof User) {
+        userId = ((User) principal).getUserID();
+        fullName = ((User) principal).getFullName();
+    } else {
+        userId = null;
+        fullName = principal.toString();
+    }	
+    String flag = (String)request.getAttribute("flag");
+    String isHaveSave = request.getParameter("isHaveSave");
+%>
+    <%@ include file="/base/include/restRequest.jspf" %>
+    <%@ include file="/base/include/ext.jspf" %>
+<script src="<%=_$basePath%>/base/form/DatePicker/WdatePicker.js"></script>
+<script src="<%=_$basePath%>/base/form/formStyleInit.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=_$basePath%>/base/form/css/formStyleDefault.css">
+
+<script type="text/javascript">
+document.write("<script id=__ie_onload defer src=javascript:void(0)><\/script>"); 
+var script = document.getElementById("__ie_onload"); 
+script.onreadystatechange = function() { 	
+    if (this.readyState == "complete") { 
+         formInit(""); // call the onload handler 
+    } 
+    
+}; 
+var isshowSave=false;
+//页面卸载事件
+/*
+window.onbeforeunload = function()
+{  
+	if(isshowSave)
+	{
+		if(confirm('离开前是否保存？')){
+			save();
+		}
+	}
+	else
+	{
+		isshowSave=true;
+	}
+	
+}
+*/
+function loadAlert(msg)
+{
+	setTimeout(function(){
+		alert(msg);		
+	},50);
+}
+var isDefaultBean = false;
+var parameter;
+function requestData(){
+	var cusparameter = location.href.substring(location.href.indexOf("?")+1);
+	activityName = encodeURI(encodeURI("<%=activityName%>"));
+	parameter = "_formName=<%= _$personalJSPath%>&_key=<%=_$key%>&_keyfield=<%=_$keyfield%>&_jdbcname=<%=_$jdbcname%>&activityName="+activityName+"&" + cusparameter;
+    var json = null;
+    var path = "<%=_$basePath%>";
+    if("<%=flag%>" != 1){
+    	//parameter = parameter; 
+    	// parameter = encodeURI(encodeURI(decodeURI(decodeURI(parameter)))); 
+    }else{
+   		// parameter = encodeURI(encodeURI(decodeURI(decodeURI(parameter)))); 
+    }
+    parameter = encodeURI(encodeURI(decodeURI(decodeURI(parameter))));
+    json = ajaxRequest(path,"<%=_$personalJSPath%>","loadData",parameter);
+    if(json.indexOf("Error report") >= 0 || json.indexOf("no rest") >= 0){
+        isDefaultBean = true;
+        json = ajaxRequest(path,"form","getJsonbyGuid",parameter);
+    }
+    return json;
+}
+
+function setupSaveButton(){
+    var myform = document.forms[0];
+    if(!isDefaultBean){
+        myform.action = "<%=_$basePath%>/service/rest/<%=_$personalJSPath%>/saveData?" + parameter;
+    }else{
+    	myform.action = "<%=_$basePath%>service/rest/form/saveData?" + parameter;
+    }
+}
+function formSave()
+{
+	isshowSave=false;
+	save();
+}
+function init(){
+	if("<%=isHaveSave%>"!="false")
+	{
+		
+		var fixedPrint = document.getElementById("fixedPrint");
+		var fixed = document.getElementById("fixed");
+		
+		if(fixed != null){
+	    	fixed.innerHTML = '<img src="base/form/images/save.png" onclick="formSave()" style="cursor:hand" title="保存"/><br /><img src="base/form/images/print.png" onclick="print()" style="cursor:hand" title="打印"/>';
+	    }
+		if(fixedPrint != null){
+	    	fixedPrint.innerHTML = '<img src="base/form/images/print.png" onclick="print()" style="cursor:hand" title="打印"/>';
+	    }
+    }
+
+    var nianling = document.getElementById("nianling");
+    var youbian = document.getElementById("youbian");
+    var shenfenzheng = document.getElementById("shenfenzheng");
+    var dianhua = document.getElementById("dianhua");
+    if(nianling != null){
+    	nianling.onfocus = isRegisterNl;
+    }
+    if(youbian != null){
+    	youbian.onfocus = isRegisterYb;
+    }
+    if(shenfenzheng != null){
+    	shenfenzheng.onfocus = isRegisterSfzhm;
+    }
+    if(dianhua != null){
+    	dianhua.onfocus = isRegisterDh;
+    }
+    json = requestData();
+    setupSaveButton();
+    if(json!='error'){
+    json = unescape(json);
+    json = eval('(' + json + ')');
+    }else{
+    return;
+    }
+   	insertData(json);
+}
+
+function insertData(json){
+ var input = null;
+    for(var i in json){
+        try{
+            if (typeof (i) == "function") continue;  
+            input=document.getElementsByName(i)[0];
+            if(input!=undefined){
+	            if(input.type == "radio" || input.type == "checkbox"){
+	                var vi = 0;
+	                for(vi = 0 ; vi <= document.getElementsByName(i).length; vi++){
+	                    input = document.getElementsByName(i)[vi];
+	                    var myvalue = json[i].toString();
+	                    if(myvalue.indexOf(input.value) >= 0){
+	                    	input.checked = true;
+	                    }else{
+	                    	input.checked = false;
+	                    }
+	                }
+	            }else if(input.type == "select-one"){
+	                if(input.options.length==0){
+	                input.options.add(new Option(json[i].toString(),json[i].toString()))
+	                }
+	              for(var  t=0;t<input.options.length;t++) 
+						{ 
+						if(input.options[t].value==json[i].toString()) 
+						{ 
+						input.selectedIndex=t; 
+						} 
+						}
+	            }else{
+	                input.value=json[i].toString(); 
+	            }
+            }else{
+	            if(json[i].toString() == "true"){
+	                document.getElementsByName(i.substring(0,i.length-4))[0].disabled = false;
+	            }else{
+	                document.getElementsByName(i.substring(0,i.length-4))[0].disabled = true;
+	            }
+            }
+        }catch (e){
+            continue;
+        }
+    }
+    
+
+}
+
+/* 校验信访人年龄 add by 尹宇星 2011-12-06 */
+function isRegisterNl(){
+	document.getElementById("grnl").onblur = registerNl;
+}
+function registerNl(){
+	var obj = document.getElementById("grnl");
+	var nl = obj.value;
+	var reg = /^\d{1,2}$/;
+	if(nl!=""){
+		if(!reg.test(nl)){
+			alert("年龄为1到99的数字");
+			obj.value='';
+			obj.focus();
+		}else if(nl==0){
+			alert("年龄不能为0");
+			obj.value='';
+			obj.focus();
+		}
+	}
+}
+/* 校验邮编 add by 尹宇星 2011-12-06 */
+function isRegisterYb(){
+	document.getElementById("youbian").onblur = registerYb;
+}
+function registerYb(){
+	var obj = document.getElementById("youbian");
+	var yb = obj.value;
+	var reg = /^[0-9]{6}$/;
+	if(yb!=""){
+		if(!reg.test(yb)){
+			alert("邮政编码由6位数字组成");
+			obj.focus();
+		}
+	}
+}
+/* 校验信访人身份证号 add by 尹宇星 2011-12-06 */
+function isRegisterSfzhm(){
+	document.getElementById("shenfenzheng").onblur = registerSfzhm;
+}
+function registerSfzhm(){
+	var obj = document.getElementById("shenfenzheng");
+	var sfzhm = obj.value;
+	var reg_15 = /^[0-9]{14}(\d|x){1}$/;
+	var reg_18 = /^[0-9]{17}(\d|x){1}$/;
+	var reg_15X = /^[0-9]{14}(\d|X){1}$/;
+	var reg_18X = /^[0-9]{17}(\d|X){1}$/;
+	if(sfzhm!=""){
+		if(reg_15.test(sfzhm)||reg_18.test(sfzhm)||reg_15X.test(sfzhm)||reg_18X.test(sfzhm)){
+		
+		}else {
+			alert("身份证号码输入有误，应为15或18位数字，位数不足以 X 补齐。");
+			obj.focus();	
+		}
+	}
+}
+/* 校验信访人电话 add by 尹宇星 2011-12-06 */
+function isRegisterDh(){
+	document.getElementById("grdh").onblur = registerDh;
+}
+function registerDh(){
+	var grdh = document.getElementById("grdh");
+	var dwdh = document.getElementById("dwdh");
+	var reg = /^(\d{3,4}?[-]\d{7,8}?)|(\d{11})$/;
+	if(grdh.value!=""){
+		if(!reg.test(grdh.value)){
+			alert("电话格式不正确。（例如010-12345678或者13812345678）");
+			grdh.value='';
+			grdh.focus();
+		}
+	}
+	if(dwdh.value!=""){
+		if(!reg.test(dwdh.value)){
+			alert("电话格式不正确。（例如010-12345678或者13812345678）");
+			dwdh.value='';
+			dwdh.focus();
+		}
+	}	
+}
+
+function underwrite(obj){
+	obj.value="<%=fullName%>";
+}
+</script>

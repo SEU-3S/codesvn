@@ -1,0 +1,417 @@
+@CHARSET "UTF-8";
+
+			body{  
+				margin:0;
+				padding:0;
+				background-color:#FFF;
+				text-align:center;
+			}
+			
+			#container{ 
+				width:780px;
+				margin:20px auto;
+				text-align:left;
+				position:relative;
+			}
+			
+			@media print{
+             .Noprn{ display:none;}
+            }
+            
+			
+			/*
+			table{
+				border:1px #000 solid;
+			}
+			 
+			table td{ border:1px #000 solid ;}
+			
+			
+			td{border-right:1px solid #888;border-bottom:1px solid #888;padding:5px 15px;}
+			table td{ border:1px #000 solid ;}
+			tr{
+				height:40px;
+				border:10px;
+				border-color: red;
+				border-style: solid;
+			}*/
+
+			.input{
+				
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;				
+			}
+			.input30{
+				width: 30px;
+			}
+			.input10{
+				width: 10px;
+			}
+			.width1{
+			 width:20px;
+			}			
+			.input50{
+				width: 50px;
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;				
+			}
+			
+			.input60{
+				width: 60px;
+			}
+			
+			.input100{
+				width: 100px;
+			}						
+			.input150{
+				width: 150px;
+			}
+			
+			
+			.input300{
+				width:300px;
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;				
+			}
+			
+			.input400{
+				width:400px;
+			}
+			
+			.input600{
+				width:600px;
+			}
+			
+			.divQM{
+				width:40%;
+				float:left;
+				margin-left:50;
+				
+			}
+			.divRQ{
+				width:40%; 
+				float:left;
+				margin-left:200;
+			}
+			
+			.div50{
+				margin-left: 50px;
+			}
+
+			.div80{
+				margin-left: 80px;
+			}
+
+			.div200{
+				margin-left: 40px;
+				float: left;
+			}
+			
+			.div80 .divLeftFloat{
+				float: left;
+			}
+			
+			.div80 .divLeft200{
+				margin-left:200px;
+				float:left;
+			}
+			.noborder{
+				width:95%;
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;
+			}
+			
+			.inputNoborderFont14{
+				FONT-SIZE: 14px; 
+				FONT-FAMILY:"宋体","Verdana"; 
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;
+				text-align: left;
+			}
+			.noborder100{
+				width:100px;
+				height:100%;
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;
+			}
+
+			.noborder200{
+				width:200px;
+				height:100%;
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;
+			}
+			.noborder300{
+				width:300px;
+				height:100%;
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;
+			}
+			.noborder380{
+				width:380px;
+				height:100%;
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;
+			}			
+			.noborder400{
+				width:400px;
+				height:100%;
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;
+			}			
+			.noborder500{
+				width:500px;
+				height:100%;
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;
+			}
+			.noborder550{
+				width:550px;
+				height:100%;
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;
+			}				
+			.noborder750{
+				width:750px;
+				height:100%;
+				background-color:#FFFFFF;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: none;
+			}			
+			.noUpBorder{
+				BORDER-TOP-STYLE: none; 
+			}
+			
+			.underline{
+				background-color:#FFF;
+				text-align:center;
+				width:150px;
+				BORDER-TOP-STYLE: none; 
+				BORDER-RIGHT-STYLE: none; 
+				BORDER-LEFT-STYLE: none; 
+				BORDER-BOTTOM-STYLE: solid
+			}
+			textarea{
+				overflow: hidden;
+				border: none;
+				background: #FFFFFF;
+			}
+			
+			/**上为1**/
+			.topborder1{
+				border-top-width:1px; 
+				border-bottom-width:0px; 
+				border-left-width:0; 
+				border-right-width:0;	
+			}
+			/**上为0**/
+			.topborder0{
+				border-top-width:0px;
+			}			
+			/**下为1**/
+			.bottomborder1{
+				border-top-width:0px; 
+				border-bottom-width:1px; 
+				border-left-width:0; 
+				border-right-width:0;
+			}
+			/**下为0**/
+			.bottomborder0{ 
+				border-bottom-width:0px; 
+			}
+			/**左为1**/
+			.letfborder1{
+				border-top-width:0px; 
+				border-bottom-width:0px; 
+				border-left-width:1; 
+				border-right-width:0;
+			}
+			/**右为1**/
+			.rightborder1{
+				border-top-width:0px; 
+				border-bottom-width:0px; 
+				border-left-width:0; 
+				border-right-width:1;
+			}
+			/**右为0**/
+			.rightborder0{
+				border-top-width:1px; 
+				border-bottom-width:1px; 
+				border-left-width:1; 
+				border-right-width:0;
+			}			
+			/**上、下为1**/
+			.topbottomborder1{
+				border-top-width:1px; 
+				border-bottom-width:1px; 
+				border-left-width:0; 
+				border-right-width:0;	
+			}
+			/**上、下为0**/
+			.topbottomborder0{
+				border-top-width:0px; 
+				border-bottom-width:0px; 
+				border-right-width:1;
+			}			
+			/**上、右为1**/
+			.toprightborder1{
+				border-top-width:1px; 
+				border-bottom-width:0px; 
+				border-left-width:0; 
+				border-right-width:1;	
+			}
+			/**上、右为0**/
+			.toprightborder0{
+				border-top-width:0px; 
+				border-bottom-width:1px; 
+				border-left-width:1; 
+				border-right-width:0;	
+			}
+			/**左、右为1**/
+			.leftrightborder1{
+				border-top-width:0px; 
+				border-bottom-width:0px; 
+				border-left-width:1; 
+				border-right-width:1;	
+			}
+			/**右、下为1**/
+			.rightbottomborder1{
+				border-top-width:0px; 
+				border-bottom-width:1px; 
+				border-left-width:0; 
+				border-right-width:1;	
+			}
+			/**右、下为0**/
+			.rightbottomborder0{
+				border-top-width:1px; 
+				border-bottom-width:0px; 
+				border-left-width:1; 
+				border-right-width:0;	
+			}															
+			/**上、右、下为1**/
+			.toprightbottomborder1{
+				border-top-width:1px; 
+				border-bottom-width:1px; 
+				border-left-width:0; 
+				border-right-width:1;	
+			}
+			/**上、右、下为0**/
+			.toprightbottomborder0{
+				border-top-width:0px; 
+				border-bottom-width:0px; 
+				border-left-width:1; 
+				border-right-width:0;	
+			}
+			/**上、左、下为1**/	
+			.topleftbottomborder1{
+				border-top-width:1px; 
+				border-bottom-width:1px; 
+				border-left-width:1; 
+				border-right-width:0;	
+			}
+			/**上、左、下为0(右为1)**/
+			.topleftbottomborder0{
+				border-top-width:0px; 
+				border-bottom-width:0px; 
+				border-left-width:0; 
+				border-right-width:1;	
+			}	
+			/**上、下、左、右为1**/		
+			.border1{
+				border-top-width:1px; 
+				border-bottom-width:1px; 
+				border-left-width:1; 
+				border-right-width:1;	
+			}	
+			/**上、下、左、右为0**/	
+			.border0{
+				border-top-width:0px; 
+				border-bottom-width:0px; 
+				border-left-width:0; 
+				border-right-width:0;	
+			}	
+			.right2{
+				border-right-width:2;	
+			}			
+			
+			/**左、上为1，右、下为0**/
+			.lefttopborder1{
+				border-top-width:1; 
+				border-bottom-width:0px; 
+				border-left-width:1; 
+				border-right-width:0px;	
+			}
+			
+			/**左、上，右、下为0**/
+			.lefttoprightborder0{
+				border-top-width:0px; 
+				border-bottom-width:0px; 
+				border-left-width:0px; 
+				border-right-width:0px;	
+			}
+											
+			/*
+			table tr td{
+				border-top-width:0px; 
+				border-bottom-width:0px; 
+				border-left-width:0; 
+				border-right-width:0"	
+			}*/
+			
+			textarea{
+				overflow:auto;
+				border:none;
+				background-color:#FFFFFF
+			}
+			
+			td{
+				height:38px;
+				border-top-width:0px; 
+				border-bottom:1px solid #2C2B29; 
+				border-left-width:0; 
+				border-right:1px solid #2C2B29;
+				font-size: 14px;
+				FONT-FAMILY:"宋体","Verdana"; 
+				vertical-align:middle;				
+			}
+			
+		
+		
