@@ -1,0 +1,92 @@
+@charset "utf-8";
+/*============= 公共样式 =============*/
+* {padding:0; margin:0; outline:0;}
+body { 	
+	overflow-y:hidden;
+	scrollbar-3dlight-color:#D4D0C8; 
+  	scrollbar-highlight-color:#fff; 
+  	scrollbar-face-color:#E4E4E4; 
+  	scrollbar-arrow-color:#666; 
+ 	scrollbar-shadow-color:#808080; 
+  	scrollbar-darkshadow-color:#D7DCE0; 
+  	scrollbar-base-color:#D7DCE0; 
+ 	scrollbar-track-color:#;
+	 }
+ul, li, h1, h2, h3, h4, h5, h6, p, form, dl, dt, dd { padding:0; margin:0;}
+ul { list-style:none;}
+img { border:0px;}
+a { color:#05a; text-decoration:none;}
+a:hover { color:#f00;}
+.cl { font-size:0; line-height:0; height:0; display:block; clear:both;}
+
+/*========登录界面样式定义========*/
+
+#loginWrap{ width:1000px; height:595px; margin: 0 auto; background-image:url(../images/login.jpg);}
+#box1{ width:1000px;  height:270px;}
+#box2{ margin-left:526px; width:474px;  margin-top:0px; float:left; display: inline; overflow:auto; }
+#box3{ margin-left:670px;  width:330px; height:120px; padding-top:100px; margin-top:0px; float:left; display: inline;}
+
+ 
+/*========主框架界面样式定义========*/ 
+#bannerWrap{ width:100%; height:136px; margin: 0 auto; }
+#leftWrap{ width:202px; overflow:auto; border: 1px solid #99BBE8; background: #C1D3EC; }
+
+ 
+/*========Input输入项样式定义========*/
+
+.input {
+	font-size: 9pt;
+	color: #1E78B3;
+	text-decoration: none;
+	height: 15px;
+	border: 1px solid #FFFFFF;
+	background:#FFFFFF;
+	font-family: "宋体";
+}
+
+/*========超链接样式定义========*/
+
+.ALink{  font-family: "宋体", "Arial Narrow", "Times New Roman"; font-size: 9pt;}
+.ALink:link		{ text-decoration:none; font-size: 9pt; color: #fff; font-weight:bold;}
+.ALink:alink	{ text-decoration:none; font-size: 9pt; color: #fff; font-weight:bold;}
+.ALink:visited	{ text-decoration:none; font-size: 9pt; color: #fff; font-weight:bold;}
+.ALink:active	{ text-decoration:none; font-size: 9pt; color: #fff; font-weight:bold;}
+.ALink:hover	{ text-decoration:none; font-size: 9pt; color: #fff; font-weight:bold;}
+
+
+
+.BLink{  font-family: "宋体", "Arial Narrow", "Times New Roman"; font-size: 9pt;}
+.BLink:link		{ text-decoration:none; font-size: 9pt; color: #424242; }
+.BLink:alink	{ text-decoration:none; font-size: 9pt; color: #424242; }
+.BLink:visited	{ text-decoration:none; font-size: 9pt; color: #424242; }
+.BLink:active	{ text-decoration:none; font-size: 9pt; color: #424242; }
+.BLink:hover	{ text-decoration:none; font-size: 9pt; color: #ff0000; }
+
+.
+
+/*========table样式定义========*/
+
+.treeTrbk{ border-bottom: 1px solid #D1DFEA; background: #FFF; height:24px; }
+.treeTrbkA{ border-bottom: 1px solid #86ABD4; background: #AFCEF7; height:24px; }
+
+
+
+/*========文字样式定义========*/
+
+.Font9Black {
+	font-family: "宋体";
+	font-size: 9pt;
+	color: #444444;
+}
+
+.Font9Blue {
+	font-family: "宋体";
+	font-size: 9pt;
+	color: #001F6D;
+}
+
+.Font9BlueInfo {
+	font-family: "宋体";
+	font-size: 9pt;
+	color: #2C5DA5;
+}
