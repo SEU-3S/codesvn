@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+ xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:p="http://www.springframework.org/schema/p"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans   
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context-3.0.xsd
+ http://www.springframework.org/schema/tx
+ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+ http://www.springframework.org/schema/jdbc
+ http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd ">
+ 	
+    
+<!-- 立案查处工作流启动 -->
+<bean name="startWorkflowLacc" class="com.klspta.web.qingdaoNW.lacc.workflow.StartWorkflowLacc" scope="prototype"/>
+<!-- 信访举报工作流启动 -->
+<bean name="startWorkflowXfjb" class="com.klspta.web.qingdaoNW.xfjb.workflow.StartWorkflowXfjb" scope="prototype"/>
+<!-- 动态巡查 -->
+<bean name="dtxcManager" class="com.klspta.web.qingdaoNW.dtxc.DtxcManager" scope="prototype"/>
+<bean name="xcDataList" class="com.klspta.web.qingdaoNW.dtxc.XcDataList" scope="prototype"/>
+<!-- 信访举报管理类 -->
+<bean name="xfAction" class="com.klspta.web.qingdaoNW.xfjb.manager.XfAction" scope="prototype"/>
+<!-- 立案查处 -->
+<bean name="lacc" class="com.klspta.web.qingdaoNW.lacc.LaccManager" scope="prototype"/>
+<!-- 案件台账 -->
+<bean name="tjfxManager" class="com.klspta.web.qingdaoNW.lacc.TjfxManager" scope="prototype" /> 
+
+<!--回传成果-->
+	<bean name="padDataManager" class="com.klspta.web.qingdaoNW.dtxc.PADDataManager" scope="prototype"/>
+	
+<!-- 卫片执法 -->
+<bean name="wpzfList" class="com.klspta.web.qingdaoNW.wpzf.WpzfListManager" scope="prototype"/>
+<bean name="wpzf" class="com.klspta.web.qingdaoNW.wpzf.ImportWp" scope="prototype"/>
+<bean name="importwp" class="com.klspta.web.qingdaoNW.wpzf.ImportWp" scope="prototype"/>
+<bean name="wpzfHandler" class="com.klspta.web.qingdaoNW.wpzf.WpzfHandler" scope="prototype"/>
+
+<!-- 添加签章-->
+<bean id="sign" class="com.klspta.web.qingdaoNW.importSign.Sign"/>
+
+</beans>

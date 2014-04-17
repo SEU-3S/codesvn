@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+ xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:p="http://www.springframework.org/schema/p"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans   
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context-3.0.xsd
+ http://www.springframework.org/schema/tx
+ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+ http://www.springframework.org/schema/jdbc
+ http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd ">
+    <!-- 属性字段维护 -->
+	<bean name="prohandle" class="com.klspta.web.cbd.cbsycs.sxzdwh.PropertyHandle" scope="prototype"/>  
+	<!-- 基础数据管理你类 -->
+	<bean name="jcsjHandler" class="com.klspta.web.cbd.jcsj.JcsjHandler" scope="prototype"/>
+     <!-- 系统名称修改 -->
+	<bean name="projectInfo" class="com.klspta.model.projectinfo.ProjectInfo" scope="prototype"/>
+	<!--项目办理过程-->
+	<bean name="xmmanager" class="com.klspta.web.cbd.xmgl.Xmmanager" />
+	  <!-- 基础配置回收期-->
+	<bean name="pzmanager" class="com.klspta.web.cbd.jcpz.PzManager" scope="prototype"/> 
+	<!-- 计划表管理类 -->
+	<bean name="planHandle" class="com.klspta.web.cbd.plan.PlanHandle" scope="prototype"/>
+	<!-- 基本信息 -->
+	<bean name="basicInfo" class="com.klspta.web.cbd.cbsycs.BasicInfo" scope="prototype"/>
+	<!-- 项目信息 -->
+	<bean name="projectManager" class="com.klspta.web.cbd.cbxmjbsj.ProjectManager" scope="prototype"/>
+	<!-- 地块基本信息保存 -->
+	<bean name="jbdkxxlr" class="com.klspta.web.cbd.cbsycs.BasicInfoSave" scope="prototype"/>
+	<!-- 项目基本信息保存 -->
+	<bean name="jbxmxxlr" class="com.klspta.web.cbd.cbxmjbsj.ProjectInfoSave" scope="prototype"/> 
+	<!-- 项目控规指标表 -->	
+	<bean name="xmkgzbbmanager" class="com.klspta.web.cbd.xmgl.xmkgzbb.Xmkgzbbmanager" scope="prototype"/>
+	<!-- 开发工作航道图-->
+	<bean name="proProgress" class="com.klspta.web.cbd.cbsycs.kfhdt.ProjectProgress" scope="prototype"/>
+	<!-- 统计数据-->
+	<bean name="staticData" class="com.klspta.web.cbd.cbsycs.tjsj.StatisData" scope="prototype"/>
+	<!-- 开发体量管理类 -->
+	<bean name="kftlHandle" class=" com.klspta.web.cbd.plan.KftlHandler" scope="prototype"/> 
+	
+	<!-- 供地体量管理类 -->
+	<bean name="gdtlHandle" class="com.klspta.web.cbd.plan.GdtlHandler" scope="prototype"/> 
+	
+	<!-- 安置房建设 -->
+	<bean name="azfjsHandle" class="com.klspta.web.cbd.plan.AzfjsHandler" scope="prototype"/> 
+	
+	<!-- 投融资情况 -->
+	<bean name="trzqkHandle" class="com.klspta.web.cbd.plan.TrzqkHandler" scope="prototype"/>	
+		<!-- 自然斑 -->
+	<bean name="zrbHandle" class="com.klspta.web.cbd.yzt.zrb.ZrbManager" scope="prototype"/>
+		
+	<bean name="jbbHandle" class="com.klspta.web.cbd.yzt.jbb.JbbManager" scope="prototype"/>	
+		<!-- 计划管理-->
+	<bean name="planManager" class="com.klspta.web.cbd.dtjc.tjbb.PlanManager" scope="prototype"/>	
+	
+	<bean name="hxxmHandle" class="com.klspta.web.cbd.yzt.hxxm.HxxmManager" scope="prototype"/>
+		<!-- 安置房-->
+	<bean name="azfjs" class="com.klspta.web.cbd.hxxm.Anzfjs" scope="prototype"/>
+		<!-- 二手房市场监测 -->	
+	<bean name="scjcHandle" class="com.klspta.web.cbd.jtfx.ztt.ScjcManager" scope="prototype"/>
+	<!-- 二手房基本信息及月度监测信息 add by zouy@chinastis.com 2013-12-30 -->	
+	<bean name="scjcManager" class="com.klspta.web.cbd.jtfx.scjc.ScjcManager" scope="prototype"/>
+	<!-- 房源资产管理 -->
+	<bean name="fyzcHandle" class="com.klspta.web.cbd.swkgl.Fyzcmanager" scope="prototype"/>
+	<!-- 统计报表计划管理类 -->	
+	<bean name="tjbbManager" class="com.klspta.web.cbd.dtjc.TjbbManager" scope="prototype"/>
+	<bean name="ptzzgml" class = "com.klspta.web.cbd.dtjc.jcmx.PtzzgmlMXTwoData" scope="prototype"/>
+	<bean name="jzmjbbdfx" class = "com.klspta.web.cbd.dtjc.jcmx.bbdfx.Jzmjbbdfx" scope="prototype"/>
+	<bean name="ptzzgmlCL" class="com.klspta.web.cbd.dtjc.jcmx.PtzzgmlMXOneData" scope="prototype"/>
+	<!-- GIS-->
+	<bean name="gisfactory" class="com.klspta.model.CBDinsertGIS.GisFactory" scope="prototype"/>
+	
+	<bean name="formulaEdit" class="com.klspta.model.formulaEdit.FormulaEdit" scope="prototype"/>
+	<!-- 区域监测 -->	
+	<bean name="qyjcManager" class="com.klspta.web.cbd.qyjc.QyjcManager" scope="prototype"/>
+	<!-- CBD中心区控规指标 -->	
+	<bean name="kgzbmanager" class="com.klspta.web.cbd.yzt.kgzb.KgzbManager" scope="prototype"/>
+	
+	<!-- 数据表字段管理类 -->	
+	<bean name="tableField" class="com.klspta.web.cbd.yzt.table.TableFieldManager" scope="prototype"/>
+	<bean name="xzlzjjc" class="com.klspta.web.cbd.sccsl.XzlzjjcManager" scope="prototype"/>
+	<bean name="staticReport" class="com.klspta.web.cbd.cbsycs.tjsj.StatisReport" scope="prototype"/>
+	
+	<!-- 生成PPT -->	
+	<bean name="xmbg" class="com.klspta.web.cbd.xmgl.xmbg.XmbgManager" scope="prototype"/>
+	<!-- 项目管理 -->
+	<bean name="XmgljgManager" class="com.klspta.web.cbd.dtjc.kfgl.XmgljgManager" scope="prototype"/>
+	<!-- 生成计划报表（年度计划、季度计划） -->	
+	<bean name="jh" class="com.klspta.web.cbd.dtjc.tjbh.JhManager" scope="prototype"/>
+	
+	<!-- 生成储备计划整合表 -->	
+	<bean name="cbjhzhb" class="com.klspta.web.cbd.yzt.cbjhzhb.CbjhManager" scope="prototype"/>
+	<bean name="zafzc" class="com.klspta.web.cbd.swkgl.AzfzcManager" scope="prototype"/>
+	<bean name="tdzcglManager" class="com.klspta.web.cbd.zcgl.tdzcgl.TdzcglManager" scope="prototype"/>
+	<!-- 中心资金管理 -->
+	<bean name="ZjglManager" class="com.klspta.web.cbd.dtjc.zxzjgl.ZjglManager" scope="prototype"/>
+</beans>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+ xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:p="http://www.springframework.org/schema/p"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans   
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context-3.0.xsd
+ http://www.springframework.org/schema/tx
+ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+ http://www.springframework.org/schema/jdbc
+ http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd ">
+  	<!-- 卫片执法管理 -->
+	<bean name="tdbgdc" class="com.klspta.web.xiamen.wpzf.tdbgdc.TdbgdcManager" scope="prototype"/>  
+	<bean name="wptb" class="com.klspta.web.xiamen.wpzf.wpzf.WptbManager" scope="prototype"/> 
+	<!-- 巡查核查管理 -->   
+	<bean name="xchc" class="com.klspta.web.xiamen.xchc.XchcManager" scope="prototype"/>  
+	<!-- 案件查处管理 --> 
+    <bean name="ajcc" class="com.klspta.web.xiamen.ajcc.AjccManager" scope="prototype" />
+	<!-- 批后监管管理 -->   
+	<bean name="phjg" class="com.klspta.web.xiamen.phjg.PhjgManager" scope="prototype"/>    
+	 <!-- 信访举报工作流启动 -->
+	<bean name="startWorkflowXfjb" class="com.klspta.web.xiamen.xfjb.StartWorkflowXfjb" scope="prototype"/>
+	<!-- 信访举报XfjbManager -->
+	<bean name="XfjbManager" class="com.klspta.web.xiamen.xfjb.XfjbManager" scope="prototype"/>
+	<!-- 短信设置-->
+	<bean name="messageManager" class="com.klspta.web.xiamen.shortmessage.MessageManager" scope="prototype"/>
+	<!-- 短信查询dxManager -->
+	<bean name="dxManager" class="com.klspta.web.xiamen.dxgl.DxManager" scope="prototype"/>
+	<!-- 设备树 -->
+	<bean name="deviceTree" class="com.klspta.web.xiamen.device.DeviceTree" scope="prototype"/>
+	<!-- 设备树监控 -->
+	<bean name="deviceMonitor" class="com.klspta.web.xiamen.device.DeviceMonitor" scope="prototype"/>
+	<!-- 轨迹回放 -->
+	<bean name="location" class="com.klspta.web.xiamen.device.DevicePlayBack" />
+	<!-- 问题反馈 -->
+	<bean name="xxfkManager" class="com.klspta.web.xiamen.xxfk.XxfkManager" scope="prototype"/>
+</beans>

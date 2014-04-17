@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+    http://www.springframework.org/schema/context   
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd   
+    http://www.springframework.org/schema/tx   
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd   
+    http://www.springframework.org/schema/jdbc   
+    http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+    
+	<!-- accessory附件上传 -->
+	<bean name="accessory" class="com.klspta.model.accessory.AccessoryUtil" scope="prototype"/>
+	<bean name="accessoryAction" class="com.klspta.model.accessory.dzfj.AccessoryAction" scope="prototype"/>
+	
+	
+	<!-- 文书管理 -->
+	<bean name="weboffice" class="com.klspta.model.webOffice.DynamicTreeOperation" scope="prototype"/>
+    
+    <!--获取map配置信息-->
+    <bean name="mapconfig" class="com.klspta.model.mapconfig.MapConfig" scope="prototype"/>
+    		<!-- 个人信息入口 -->
+		<bean id="personInfo" class="com.klspta.model.personInfo.PersonInfo" scope="prototype" />
+	<!-- 地图管理 -->
+	<bean name="mapAuthorOperation" class="com.klspta.model.mapconfig.MapAuthorOperation" scope="prototype"/>
+	
+	<!-- anychart -->
+		<!--外业任务总入口-->
+    <bean name="wyrwmanager" class="com.klspta.model.wyrw.WyrwManager" scope="prototype"/> 
+    
+	<!-- anychart -->
+    <bean name="anyChart" class="com.klspta.model.report.api.AnyChartDataSource" scope="prototype"/>
+	<!-- Report -->
+    <bean name="reportDataSource" class="com.klspta.model.report.api.ReportDataSource" scope="prototype"/>
+	
+		<!-- 行政区划入口 -->
+	<bean name="xzqh" class="com.klspta.model.xzqh.Xzqh" />
+
+	<!-- 根据yw_guid获取所有文件 -->
+	<bean name="getFilesByYwguid" class="com.klspta.model.accessory.AccessoryUtil" scope="prototype"/>
+		  <!-- 报表 -->
+    <bean name="reportManage" class="com.klspta.model.report.ReportManage" scope="prototype"/>	
+	
+		<!-- shape导入 -->
+	<bean name="parseShapefile" class="com.klspta.model.parseShapefile.ParseShapefile" scope="prototype"/>
+			<!-- 属性分析 -->
+	<bean id="proanalyse" class="com.klspta.model.analysis.PropertyAnalyse" scope="prototype"/>	
+</beans>   

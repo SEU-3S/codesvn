@@ -1,0 +1,17 @@
+[WARN ] 2014-03-10 09:51:07 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 09:58:54 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 10:50:41 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 10:56:47 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 13:13:19 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 17:48:26 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 17:49:31 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 17:51:43 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 17:56:09 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 17:57:20 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 18:03:52 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 18:08:42 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 21:53:47 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 21:58:01 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 22:09:58 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 22:14:23 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-10 22:22:00 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED

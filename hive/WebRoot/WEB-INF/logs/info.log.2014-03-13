@@ -1,0 +1,2 @@
+[WARN ] 2014-03-13 01:54:18 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED
+[WARN ] 2014-03-13 02:20:47 net.sf.json.JSONObject - Property 'shareBytes' of class oracle.sql.ROWID has no read method. SKIPPED

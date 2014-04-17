@@ -1,0 +1,12 @@
+CoordinateEncrypt.dll 	提供两个方法：
+
+GetEncryptData(x,y)
+GetDecryptData(jmzb)
+
+
+产品版本：1.0.0.2
+描述：坐标加密空间
+版权：国土资源部信息中心。保留所有权利。
+
+
+

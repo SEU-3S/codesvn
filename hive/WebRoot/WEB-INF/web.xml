@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<servlet>
+		<servlet-name>restservice</servlet-name>
+		<servlet-class>com.klspta.base.MyDispatcherServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>WEB-INF/classes/com/klspta/base/datasource/applicationContext-jdbc.xml,/WEB-INF/conf/applicationContext-*.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>restservice</servlet-name>
+		<url-pattern>/service/*</url-pattern>
+	</servlet-mapping>
+	
+
+	
+	<context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>WEB-INF/classes/com/klspta/base/datasource/applicationContext-jdbc.xml,/WEB-INF/conf/applicationContext-*.xml</param-value>
+    </context-param>
+	<filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	
+	<!-- 添加电子签章servlet -->
+	<servlet>
+		<servlet-name>signservice</servlet-name>
+		<servlet-class>com.klspta.web.xuzhouNW.importSign.SignServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>signservice</servlet-name>
+		<url-pattern>/signservice</url-pattern>
+	</servlet-mapping>
+	
+	    <!--Spring的ApplicationContext 载入 -->
+    <listener>
+        <listener-class>com.klspta.base.MyContextLoaderListener</listener-class>
+    </listener>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>WEB-INF/log4j.properties</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>QuartzInitializer</servlet-name>
+		<display-name>Quartz Initializer Servlet</display-name>
+		<servlet-class>com.klspta.base.job.QuartzInitializerServletSwitch</servlet-class>
+		<init-param>
+			<param-name>config-file</param-name>
+			<param-value>/com/klspta/base/job/job.properties</param-value>
+		</init-param>
+		<init-param>
+			<param-name>shutdown-on-unload</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+     <!--Flex Remote Object -->
+    <display-name>BlazeDS</display-name>
+    <description>BlazeDS Application</description>
+
+    <!-- Http Flex Session attribute and binding listener support -->
+    <listener>
+        <listener-class>flex.messaging.HttpFlexSession</listener-class>
+    </listener>
+
+    <!-- MessageBroker Servlet -->
+    <servlet>
+        <servlet-name>MessageBrokerServlet</servlet-name>
+        <display-name>MessageBrokerServlet</display-name>
+        <servlet-class>flex.messaging.MessageBrokerServlet</servlet-class>
+        <init-param>
+            <param-name>services.configuration.file</param-name>
+            <param-value>/WEB-INF/flex/services-config.xml</param-value>
+       </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MessageBrokerServlet</servlet-name>
+        <url-pattern>/messagebroker/*</url-pattern>
+    </servlet-mapping>
+</web-app>
