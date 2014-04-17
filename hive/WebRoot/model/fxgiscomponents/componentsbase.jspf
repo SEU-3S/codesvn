@@ -1,0 +1,8 @@
+<%
+	String _$path = request.getContextPath();
+	String _$basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + _$path;
+	String  _$personalJSPath = request.getRequestURI();
+	_$personalJSPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + _$personalJSPath.replaceAll(".jsp",".js");
+%>
+    <%@ include file="/base/include/esri.jspf" %>
+<script type="text/javascript" src="<%=_$personalJSPath%>"></script>

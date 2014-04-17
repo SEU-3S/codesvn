@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<anychart>
+    <!--需要配多個视图窗可以将此文件复制出来修改view属性以及显示比例，此文件作为报表模板不能修改-->
+    <dashboard>
+        <view type="Dashboard">
+            <title enabled="false"/>
+            <background>
+                <inside_margin all="3" top="10"/>
+            </background>
+            <vbox width="100%" height="100%">
+                <view id="v1" name="v1" type="Chart" source="v1" width="100%"
+                 height="100%">
+                    <margin top="0"/>
+                </view>
+            </vbox>
+        </view>
+    </dashboard>
+    <settings>
+        <animation enabled="True"/>
+    </settings>
+    <charts>
+        <chart plot_type="CategorizedVertical" name="v1">
+            <data_plot_settings default_series_type="bar">
+                <bar_series group_padding="0.2">
+                    <!--提示信息设置-->
+                    <tooltip_settings enabled="true">
+                        <font render_as_html="true">
+                        </font>
+                        <format>
+                            <![CDATA[<font face="{%tipfamily}" size="{%tipsize}"><b>{%Name}{numDecimals:0}</b><br/>数&nbsp;&nbsp;&nbsp;&nbsp;值:{%Value}<br/></font>]]>
+                        </format>
+                    </tooltip_settings>
+                    <!--显示信息设置-->
+                    <label_settings enabled="true">
+                        <background enabled="false"/>
+                        <font render_as_html="true">
+                        </font>
+                        <format>
+                            <![CDATA[<font face="{%lablefamily}" size="{%lablesize}">数值：{%Value}{numDecimals:2}</font>]]>
+                        </format>
+                    </label_settings>
+                </bar_series>
+                <area_series group_padding="0.2">
+                    <!--提示信息设置-->
+                    <tooltip_settings enabled="true">
+                        <font render_as_html="true">
+                        </font>
+                        <format>
+                            <![CDATA[<font face="{%tipfamily}" size="{%tipsize}"><b>{%Name}{numDecimals:0}</b><br/>数&nbsp;&nbsp;&nbsp;&nbsp;值:{%Value}<br/></font>]]>
+                        </format>
+                    </tooltip_settings>
+                    <!--显示信息设置-->
+                    <label_settings enabled="true">
+                        <background enabled="false"/>
+                        <font render_as_html="true">
+                        </font>
+                        <format>
+                            <![CDATA[<font face="{%lablefamily}" size="{%lablesize}">数值：{%Value}{numDecimals:2}</font>]]>
+                        </format>
+                    </label_settings>
+                </area_series>
+                <line_series group_padding="0.2">
+                    <!--提示信息设置-->
+                    <tooltip_settings enabled="true">
+                        <font render_as_html="true">
+                        </font>
+                        <format>
+                            <![CDATA[<font face="{%tipfamily}" size="{%tipsize}"><b>{%Name}{numDecimals:0}</b><br/>数&nbsp;&nbsp;&nbsp;&nbsp;值:{%Value}<br/></font>]]>
+                        </format>
+                    </tooltip_settings>
+                    <!--显示信息设置-->
+                    <label_settings enabled="true">
+                        <background enabled="false"/>
+                        <font render_as_html="true">
+                        </font>
+                        <format>
+                            <![CDATA[<font face="{%lablefamily}" size="{%lablesize}">数值：{%Value}{numDecimals:2}</font>]]>
+                        </format>
+                    </label_settings>
+                </line_series>
+                <sline_series group_padding="0.2">
+                    <!--提示信息设置-->
+                    <tooltip_settings enabled="true">
+                        <font render_as_html="true">
+                        </font>
+                        <format>
+                            <![CDATA[<font face="{%tipfamily}" size="{%tipsize}"><b>{%Name}{numDecimals:0}</b><br/>数&nbsp;&nbsp;&nbsp;&nbsp;值:{%Value}<br/></font>]]>
+                        </format>
+                    </tooltip_settings>
+                    <!--显示信息设置-->
+                    <label_settings enabled="true">
+                        <background enabled="false"/>
+                        <font render_as_html="true">
+                        </font>
+                        <format>
+                            <![CDATA[<font face="{%lablefamily}" size="{%lablesize}">数值：{%Value}{numDecimals:2}</font>]]>
+                        </format>
+                    </label_settings>
+                </sline_series>
+                <slinearea_series group_padding="0.2">
+                    <!--提示信息设置-->
+                    <tooltip_settings enabled="true">
+                        <font render_as_html="true">
+                        </font>
+                        <format>
+                            <![CDATA[<font face="{%tipfamily}" size="{%tipsize}"><b>{%Name}{numDecimals:0}</b><br/>数&nbsp;&nbsp;&nbsp;&nbsp;值:{%Value}<br/></font>]]>
+                        </format>
+                    </tooltip_settings>
+                    <!--显示信息设置-->
+                    <label_settings enabled="true">
+                        <background enabled="false"/>
+                        <font render_as_html="true">
+                        </font>
+                        <format>
+                            <![CDATA[<font face="{%lablefamily}" size="{%lablesize}">数值：{%Value}{numDecimals:2}</font>]]>
+                        </format>
+                    </label_settings>
+                </slinearea_series>
+            </data_plot_settings>
+            <chart_settings>
+                <axes>
+                    <x_axis>
+                        <title enabled="true">
+                            <font render_as_html="true">
+                            </font>
+                            <text>
+                                <![CDATA[<font face="{%lablefamily}" size="{%TitleSize}">{%Title}</font>]]>
+                            </text>
+                        </title>
+                    </x_axis>
+                    <y_axis>
+                        <title enabled="true">
+                            <font render_as_html="true">
+                            </font>
+                            <text>
+                                <![CDATA[<font face="{%titlefamily}" size="{%titlesize}">{%lablesize}{numDecimals:0}</font>]]>
+                            </text>
+                        </title>
+                    </y_axis>
+                </axes>
+                <title enabled="true">
+                    <font render_as_html="true">
+                    </font>
+                    <text>
+                        <![CDATA[<font face="{%titlefamily}" size="{%titlesize}">{%titletitle}{numDecimals:0}</font>]]>
+                    </text>
+                </title>
+            </chart_settings>
+            <data>
+                <attributes>
+                    <attribute name="titlesize">
+                        20
+                    </attribute>
+                </attributes>
+            </data>
+        </chart>
+    </charts>
+</anychart>

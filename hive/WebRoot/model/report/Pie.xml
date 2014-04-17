@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<anychart>
+    <!--需要配多個视图窗可以将此文件复制出来修改view属性以及显示比例，此文件作为报表模板不能修改-->
+    <dashboard>
+        <view type="Dashboard">
+            <title enabled="false"/>
+            <margin all="0"/>
+            <background border="false">
+                <inside_margin all="0"/>
+            </background>
+            <vbox width="100%" height="100%">
+                <view id="v1" name="v1" type="Chart" source="v1" width="100%"
+                 height="100%">
+                    <margin top="0"/>
+                </view>
+            </vbox>
+        </view>
+    </dashboard>
+    <settings>
+        <animation enabled="True"/>
+    </settings>
+    <charts>
+        <chart plot_type="Pie" name="v1">
+            <data_plot_settings enable_3d_mode="false">
+                <pie_series>
+                    <!--提示信息设置-->
+                    <tooltip_settings enabled="true">
+                        <font render_as_html="true">
+                        </font>
+                        <format>
+                            <![CDATA[<font face="{%tipfamily}" size="{%tipsize}"><b>{%Name}{numDecimals:0}</b><br/>数&nbsp;&nbsp;&nbsp;&nbsp;值:{%Value}<br/>百分比:{%YPercentOfSeries}{numDecimals: 2}%</font>]]>
+                        </format>
+                    </tooltip_settings>
+                    <!--显示信息设置-->
+                    <label_settings enabled="true">
+                        <background enabled="false"/>
+                        <position anchor="Center" valign="Center" halign="Center" padding="20"/>
+                        <font render_as_html="true">
+                        </font>
+                        <format>
+                            <![CDATA[<font face="{%lablefamily}" size="{%lablesize}">{%YPercentOfSeries}{numDecimals:1}%</font>]]>
+                        </format>
+                    </label_settings>
+                </pie_series>
+            </data_plot_settings>
+            <chart_settings>
+                <!--图注设置-->
+                <legend enabled="true" position="left" align="Spread" ignore_auto_item="true" padding="15">
+                    <font render_as_html="true"/>
+                    <format>
+                        <![CDATA[<font face="{%legendfamily}" size="{%legendsize}">{%Icon} <b>{%Name}{numDecimals:0}</b>&nbsp;&nbsp;数值：{%YValue}</font>]]>
+                    </format>
+                    <title>
+                        <font render_as_html="true"/>
+                        <text>
+                            <![CDATA[<font face="{%legendtitlefamily}" size="{%legendtitlesize}">{%legendtitletitle}</font>]]>
+                        </text>
+                    </title>
+                    <background>
+                        <inside_margin left="10" right="10"/>
+                    </background>
+                    <items>
+                        <item source="Points"/>
+                    </items>
+                </legend>
+                <title enabled="true">
+                    <font render_as_html="true">
+                    </font>
+                    <text>
+                        <![CDATA[<font face="{%titlefamily}" size="{%titlesize}">{%titletitle}{numDecimals:0}</font>]]>
+                    </text>
+                </title>
+            </chart_settings>
+            <data>
+                <!--部分属性默认值-->
+                <attributes>
+                    <attribute name="titlesize">
+                        <![CDATA[20]]>
+                    </attribute>
+                    <attribute name="titlefamily">
+                        <![CDATA[黑体]]>
+                    </attribute>
+                </attributes>
+            </data>
+        </chart>
+    </charts>
+</anychart>

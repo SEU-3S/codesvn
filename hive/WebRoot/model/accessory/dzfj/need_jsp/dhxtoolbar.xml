@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<toolbar>
+	<item id="newFolder" type="button" img="open.gif"
+		imgdis="open_dis.gif" text="新建同级文件夹" action="createFolder">
+	</item>
+	<item id="newSubFolder" type="button" img="other.gif"
+		imgdis="other.gif" text="新建子文件夹" action="createSubFolder"
+		enabled="false">
+	</item>
+	<item id="sep1" type="separator" />
+	<item id="rename" type="button" img="cut.gif" imgdis="cut.gif"
+		text="重命名"  action="rename"/>
+	<!-- item id="save" type="button"  img="save.gif" imgdis="save_dis.gif" text="保存"/-->
+	<item id="delete" type="button" img="delete.png" imgdis="delete.png"
+		text="删除" enabled="false" action="deleteFile"/>
+	<item id="sep2" type="separator" />
+	<item id="upload" type="button" img="undo.gif" imgdis="undo_dis.gif"
+		text="上传" enabled="false" action="upload" />
+	<item id="download" type="button" img="redo.gif"
+		imgdis="redo_dis.gif" text="下载" enabled="false" action="download"/>
+	<item id="sep3" type="separator" />
+	<!--<item id="downloadAll" type="button" img="redo.gif"
+		imgdis="redo_dis.gif" text="全部下载" enabled="false" action="downloadAll"/>
+	<item id="sep4" type="separator" />	
+	<item id="print" type="buttonSelect" img="print.gif" imgdis="print_dis.gif" text="打印" enabled="false">
+		<item type="button" id="print_page" text="当页" img="page.gif" />
+		<item type="button" id="print_range" text="全部" img="page_range.gif" />
+		<item type="button" id="print_cfg" text="打印设置" img="settings.gif" />
+	</item>
+	<item id="sep5" type="separator" />
+	<item id="help" type="button" img="help.png" text="帮助"
+		imgdis="help.png" action="doHelp">
+	</item>-->
+</toolbar>
