@@ -27,25 +27,32 @@ package widgets.PlayBack{
 		private var map:Map = null;
 		public var flayer:FeatureLayer = null;
 		private var temporalRenderer:TemporalRenderer =null;
+		public var features:Array=[];
 		
 		
 		public function PlayBack(timeSlider:TimeSlider,map:Map){
 			this.timeSlider = timeSlider;
 			this.map = map;
+			
 			flayer=new FeatureLayer();
 			initRender();
-			map.addLayer(flayer);
-			map.timeSlider = timeSlider;
-		}
-		
-		
-		public function playBack(result:ArrayCollection):void{
+			
 			var timeInfo:TimeInfo = new TimeInfo();
 			timeInfo.startTimeField = "date";
 			var details:LayerDetails = new LayerDetails();
 			details.timeInfo = timeInfo;
 			flayer.featureCollection = new FeatureCollection(null,details);
 			
+			map.addLayer(flayer);
+			map.timeSlider = timeSlider;
+		}
+		
+		
+		public function playBack(result:ArrayCollection):void{
+			if(features.length!=0){
+				flayer.applyEdits(null,null,features);
+				features=[];
+			}
 			addFeatures(result);
 		}
 		
@@ -86,7 +93,6 @@ package widgets.PlayBack{
 		}
 		
 		private function addFeatures(result:ArrayCollection):void{
-			var features:Array=[];
 			var timeExtent:TimeExtent=new TimeExtent();
 			for(var i:Number=0;i<result.length;i++){
 				var obj:Object=result.getItemAt(i);

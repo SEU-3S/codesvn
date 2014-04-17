@@ -10,6 +10,7 @@
 		<![CDATA[
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
+			import mx.formatters.DateFormatter;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
 			import mx.rpc.remoting.RemoteObject;
@@ -48,19 +49,27 @@
 				Alert.show(event.fault.faultDetail,"错误");
 			}
 			
-			private function getHistoryCoords(devicesid:String):void{
+			private function getHistoryCoords(devicesid:String,start:Date,end:Date):void{
 				historyRO=new RemoteObject();
 				historyRO.destination=destination;
 				historyRO.endpoint=endpoint;
-				historyRO.getHistoryCoords(devicesid);
+				historyRO.getHistoryCoords(devicesid,start,end);
 			}
 			
 			private function playback():void{
-				if(!tree.selectedItem){
+				var selectedItem:Object=tree.selectedItem;
+				var start:Date=sd.selectedDate;
+				start.hours=sh.value;
+				start.minutes=sm.value;
+				var end:Date=ed.selectedDate;
+				end.hours=eh.value;
+				end.minutes=em.value;
+				
+				if(!tree.selectedItem&&!start&&!end){
 					Alert.show("请选择设备","提示");
 					return;
 				}
-				getHistoryCoords(tree.selectedItem.ID);
+				getHistoryCoords(tree.selectedItem.ID,start,end);
 				historyRO.addEventListener(ResultEvent.RESULT,function result(event:ResultEvent):void{
 					var result:ArrayCollection=event.result as ArrayCollection;
 					if(result.length==0){
@@ -76,7 +85,7 @@
 			}
 			
 			private function clearFeatures():void{
-				pbObject.flayer.clear();
+				pbObject.flayer.applyEdits(null,null,pbObject.features);
 			}
 			
 			private function widget_closed():void{
@@ -97,12 +106,25 @@
 						   open="widget_opend()">
 		<mx:Tree id="tree" width="350" height="300">
 		</mx:Tree>
-		<s:Label x="7" y="360" text="起止时间："/>
-		<s:Label x="7" y="323" text="结束时间："/>
-		<mx:DateField x="85" y="322" width="200" formatString="YYYY-MM-DD"/>
-		<mx:DateField x="85" y="357" width="200" formatString="YYYY-MM-DD"/>
-		<s:Button x="20" y="415" label="显示轨迹"/>
+		<s:Label x="7" y="323" text="起始时间："/>
+		<s:Label x="7" y="360" text="结束时间："/>
+		<mx:DateField id="sd" x="85" y="322" width="104" dayNames="[日,一,二,三,四,五,六]"
+					  formatString="YYYY-MM-DD" monthNames="[一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月]"
+					  selectedDate="{new Date()}"/>
+		<mx:DateField id="ed" x="85" y="357" width="104" dayNames="[日,一,二,三,四,五,六]"
+					  formatString="YYYY-MM-DD" monthNames="[一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月]"
+					  selectedDate="{new Date()}"/>
+		<mx:NumericStepper id="sh" x="204" y="322" width="50" maximum="23"
+						   value="{ new Date().hours}"/>
+		<mx:Label x="261" y="324" width="18" text="："/> 
+		<mx:NumericStepper id="sm" x="272" y="322" width="50" maxChars="2" maximum="59"
+						   value="{ new Date().minutes}"/>
+		<mx:NumericStepper id="eh" x="204" y="357" width="50" maxChars="2" maximum="23"
+						   value="{ new Date().hours}"/>
+		<mx:Label x="261" y="359" width="18" text="："/>
+		<mx:NumericStepper id="em" x="272" y="357" width="50" maxChars="2" maximum="59"
+						   value="{ new Date().minutes}"/>
 		<s:Button x="211" y="415" label="清除轨迹" click="clearFeatures()"/>
-		<s:Button x="117" y="414" label="轨迹回放" click="playback()"/>
+		<s:Button x="80" y="416" label="轨迹回放" click="playback()"/>
 	</viewer:WidgetTemplate>
 </viewer:BaseWidget>
